@@ -1,0 +1,1 @@
+Folder contains various solutions to Kattis problems
