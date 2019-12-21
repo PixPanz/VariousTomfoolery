@@ -1,0 +1,54 @@
+### ENTERFUNC ###
+
+" overrides enterfunc ... I think?
+" function to pass whoever entered the room to the counter";
+dude = args[1];
+pass(@args);
+$g.pit_counter:traffic(dude);
+
+
+### TRAFFIC COUNTER ###
+
+" function adds object arriving to list or increases object's count";
+dude = args[1];
+if (is_player(dude))
+  if (dude in $list_utils:slice(this.traffic))
+    " if they've been here, record the time and up their visits";
+    hasBeen = dude in $list_utils:slice(this.traffic);
+    this.traffic[hasBeen][2] = time();
+    this.traffic[hasBeen][3] = this.traffic[hasBeen][3] + 1;
+    " don't forget to say hello I suppose";
+    player:tell("Welcome back to the PoHD, ", dude, ". I'm pretty sure I've seen you here ", this.traffic[hasBeen][3], " times now. You must love it here.");
+    " if the player has never been to this stupid pit";
+  else
+    player:tell("Boy you really messed up stepping on that tarp buddy. Just thought you might like to know that I already know your name, ", dude, ".");
+    this.traffic = {@this.traffic, {dude, time(), 1}};
+  endif
+endif
+" I have never used a language with an endif statement for multi-line if statements before
+" It took me longer than it should have to figure out what was causing a syntax error on a line that had no code... :)";
+
+
+### TRAFFIC REPORT ###
+
+" rattles off counter data";
+data = $g.pit_counter.traffic;
+" sort our list";
+for j in [1..length(data)]
+  " figure I'll use a bubble sort since the list_utils sort wasn't working...";
+  for i in [1..length(data) - 1]
+    " sorting by most recent visitor. Seems to make the most sense";
+    if (data[i][2] < data[i + 1][2])
+      bigger = data[i + 1];
+      data[i + 1] = data[i];
+      data[i] = bigger;
+    endif
+  endfor
+endfor
+player:tell("The gremlin raises an eybrow. 'So you want to know who's been here? No idea why but here you go I suppose'");
+player:tell("He slowly hands you his notebook, opened to the page you need.");
+player:tell("Format: Name, Number of Visits, Most Recent Arrival. Ordered by most recent.");
+for i in [1..length(data)]
+  player:tell(data[i][1], ", ", data[i][3], ", ", $time_utils:mmddyy(data[i][2]), "-", $time_utils:ampm(data[i][2]));
+endfor
+player:tell("Once you're done reading, the depressed gremlin quickly snags the notebook back");
