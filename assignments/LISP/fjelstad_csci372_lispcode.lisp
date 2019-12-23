@@ -44,17 +44,14 @@
 ;)
 
 ;Problem 8
-(defun MY-MEMBER (atm lis)
-    (if (equal lis nil)
-        nil
-        (if (equal (car lis) atm)
-            atm
-            (if (not (equal (MY-MEMBER (cdr lis)) atm))
-                nil
-                (MY-MEMBER (cdr lis))
-            )
-        )
-    )
+(defun MYMEMBER (atm lis)
+	(if (equal lis nil)
+		nil
+		(if (equal atm (car lis))
+			atm
+			(MYMEMBER atm (cdr lis))
+		)
+	)
 )
 
 (format t"(MAKE-SET '(1 2 3 2 3 1 4)) returns ~S~%"(MAKE-SET '(1 2 3 2 3 1 4)))
@@ -67,5 +64,5 @@
 (format t"(MY-AVERAGE '(1 2 3 4 5)) returns ~S~%"(MY-AVERAGE '(1 2 3 4 5)))
 (format t"(MY-AVERAGE '(1 2 1 2)) returns ~S~%"(MY-AVERAGE '(1 2 1 2)))
 
-(format t"(MY-MEMBER '3 '(1 2 3 4)) returns ~S~%"(MY-MEMBER 3 '(1 2 3 4)))
-(format t"(MY-MEMBER '5 '(1 2 3 4)) returns ~S~%"(MY-MEMBER ))
+(format t"(MYMEMBER 3 '(1 2 3 4)) returns ~S~%"(MYMEMBER 3 '(1 2 3 4)))
+(format t"(MYMEMBER 5 '(1 2 3 4)) returns ~S~%"(MYMEMBER 5 '(1 2 3 4)))
