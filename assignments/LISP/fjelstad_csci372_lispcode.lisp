@@ -38,10 +38,15 @@
 )
 
 ;Problem 7
-;(defun MAX-SUB-LIST (lis)
-;    (if (equal lis nil)
-;        0
-;)
+(defun MAX-SUB-LIST (lis)
+    (if (equal lis nil)
+		(car lis)
+		(if (> (MY-LEN (MAX-SUB-LIST (cdr lis))) (MY-LEN (car lis)))
+			(MAX-SUB-LIST (cdr lis))
+			(car lis)
+		)
+	)
+)
 
 ;Problem 8
 (defun MYMEMBER (atm lis)
@@ -63,6 +68,7 @@
 (format t"(MY-SUM '()) returns ~S~%"(MY-SUM '()))
 (format t"(MY-AVERAGE '(1 2 3 4 5)) returns ~S~%"(MY-AVERAGE '(1 2 3 4 5)))
 (format t"(MY-AVERAGE '(1 2 1 2)) returns ~S~%"(MY-AVERAGE '(1 2 1 2)))
-
+(format t"(MAX-SUB-LIST '((1) (1 2) (1 2 3))) returns ~S~%"(MAX-SUB-LIST '((1) (1 2) (1 2 3))))
+(format t"(MAX-SUB-LIST '((1 2 3) (1 2) (1))) returns ~S~%"(MAX-SUB-LIST '((1 2 3) (1 2) (1))))
 (format t"(MYMEMBER 3 '(1 2 3 4)) returns ~S~%"(MYMEMBER 3 '(1 2 3 4)))
 (format t"(MYMEMBER 5 '(1 2 3 4)) returns ~S~%"(MYMEMBER 5 '(1 2 3 4)))
