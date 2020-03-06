@@ -1,5 +1,7 @@
-# A short script to calculate number of time periods needed using increasing returns
-# to reach a goal number from a given starting number
+# A short script I wrote to easily calculate how many turns it would take to
+# regain population from any given amount of population during a balacing meeting
+# for Byte-le Royale 2020. We didn't really end up needing it but I kept it for a while
+# mainly because the "rate" variable was originally called "babies" and that amused me :)
 import math
 count = 0
 add = 0

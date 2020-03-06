@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class newMain {
+public class autori {
     
     public static void main(String [] args) {
 
@@ -13,5 +13,6 @@ public class newMain {
             ans += s.charAt(0);    
         }
         System.out.println(ans);
+        scan.close();
     }
 }
