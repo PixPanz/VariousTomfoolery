@@ -1,3 +1,6 @@
+// Just checking to see if I remember how to write basic Java code :)
+// ...though it did take me a second to remember how to indicate a comment :/
+
 import java.util.Scanner;
 
 public class test {
@@ -10,3 +13,5 @@ public class test {
         System.out.println("Cool here you go!\n" + variablename);
     }
 }
+
+// Also I needed to figure out how to build the code without an IDE...
