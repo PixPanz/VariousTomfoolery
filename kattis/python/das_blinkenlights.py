@@ -1,16 +1,21 @@
+import math
+
 p, q, s = map(int, input().split())
-out = "no"
-if s < p or s < q:
-    out = "no"
-elif s == 1:
-    if p == 1 and q == 1:
-        out = "yes"
-    else: out = "no"
+lcm = 0
+if math.gcd(p,q) != 1:
+    lcm = p*q / math.gcd(p,q)
 else:
-    for sec in range(2, s):
-        if p == 1 or q == 1:
-            out = "yes"
-        elif sec % p == 0 and sec % q == 0:
-            out = "yes"
-print(out)
-#something still incorrect here
+    if p < q:
+        a = q
+        q = p
+        p = a
+    if p % q == 0: lcm = p
+    else: lcm = p*q
+
+if lcm <= s:
+    print("yes")
+else: print("no")
+
+#I had no idea Python didn't have a built in Least Common
+#Multiple function built in. This actually took me a minute
+#and around 5 failed submissions to iron out... embarassing.
